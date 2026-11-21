@@ -35,11 +35,8 @@ dotnet test --settings local.runsettings
 ```
 ## Environment variables
 Set the following system environment variables before running the test:
-| Variable       | Required       | Description                     |
-| `USEREMAIL`    | Yes            | Microsoft account email address |
-| `USERPASSWORD` | Yes            | Microsoft account password      |
-| `TOTP_SECRET`  | For TOTP login | Base32 secret key obtained while configuring Microsoft Authenticator |
-| `URL`          | No             | Overrides the `Url` run setting. The default is `https://account.microsoft.com/` |
+<img width="788" height="104" alt="image" src="https://github.com/user-attachments/assets/de578148-5c50-4ddc-bb82-0447d1fa1f49" />
+
 Example for PowerShell:
 ```powershell
 [Environment]::SetEnvironmentVariable("USEREMAIL", "your-email@outlook.com", "User")
@@ -54,22 +51,17 @@ echo $env:TOTP_SECRET
 Do not include secret values in `local.runsettings` or commit them to the repository.
 ## Microsoft account two-factor authentication setup
 1. Create a Microsoft/Outlook account with an email address and password.
-   ![Microsoft account creation screenshot placeholder](./screenshots/01-create-account.png)
 2. Sign in to the account and open **Security**.
-   ![Account security screenshot placeholder](./screenshots/02-open-security.png)
 3. Select **Account security** and then **Manage how I sign in**.
-   ![Manage sign-in methods screenshot placeholder](./screenshots/03-manage-sign-in.png)
-4. Under **Additional security**, select **Turn on two-step verification**.
-   ![Turn on two-step verification screenshot placeholder](./screenshots/04-turn-on-verification.png)
-5. Select **Next**.
-   ![Next screenshot placeholder](./screenshots/05-next.png)
-6. Choose **Authenticator app** as the verification method.
-   ![Authenticator app setup screenshot placeholder](./screenshots/06-authenticator-app.png)
-7. A QR code will appear. Choose **I can't scan the QR code**.
-   ![Cannot scan QR code screenshot placeholder](./screenshots/07-cannot-scan.png)
-8. Microsoft will display a secret key. Copy and securely save this key, then set it as `TOTP_SECRET` in your system environment.
-   ![Secret key screenshot placeholder](./screenshots/08-secret-key.png)
-9. Generate the current TOTP in the test from the secret key. Use the generated code to complete the Microsoft setup flow.
+4. <img width="1045" height="256" alt="image" src="https://github.com/user-attachments/assets/7bba20c2-6263-4ffd-b854-c5e6ea2b9b4f" />
+5. Under **Additional security**, select **Turn on two-step verification**.
+   <img width="863" height="150" alt="image" src="https://github.com/user-attachments/assets/0ed22cc8-30ac-4a5f-b633-51a4cfa016c0" />
+6. Select **Next**.
+   <img width="1125" height="237" alt="image" src="https://github.com/user-attachments/assets/0ed03760-f420-4520-bb94-80cc0638fdf5" />
+7. Choose **Authenticator app** as the verification method.
+8. A QR code will appear. Choose **I can't scan the QR code**.
+9. Microsoft will display a secret key. Copy and securely save this key, then set it as `TOTP_SECRET` in your system environment.
+10. Generate the current TOTP in the test from the secret key. Use the generated code to complete the Microsoft setup flow.
    ```csharp
    using OtpNet;
    var secret = Environment.GetEnvironmentVariable("TOTP_SECRET")
@@ -77,9 +69,8 @@ Do not include secret values in `local.runsettings` or commit them to the reposi
    var totp = new Totp(Base32Encoding.ToBytes(secret));
    var code = totp.ComputeTotp();
    ```
-10. Your Microsoft account will then be configured for two-step verification.
-    ![Two-factor verification complete screenshot placeholder](./screenshots/10-verification-complete.png)
-The screenshots directory is intentionally included as a placeholder. Add the images and keep the existing filenames, or update the links with your own filenames.
+11. Your Microsoft account will then be configured for two-step verification.
+
 ## Browser configuration
 `local.runsettings` configures the account URL and browser. Chrome is the default:
 ```xml
