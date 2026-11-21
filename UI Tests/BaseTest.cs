@@ -39,8 +39,6 @@ namespace TwoFactorAuthentication_Selenium
             }
         }
        
-
-        // Getting Local IWebDriver
         private IWebDriver GetLocalDriver(string platform)
         {            
             switch (platform)

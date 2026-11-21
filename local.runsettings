@@ -1,7 +1,6 @@
 <RunSettings>
 	<TestRunParameters>			
-		<Parameter name="Url" value="https://account.microsoft.com/" />
-		
+		<Parameter name="Url" value="https://account.microsoft.com/" />		
 		<Parameter name="Platform" value="Chrome" />
     <!--<Parameter name="Platform" value="Edge" />-->
 		<!--<Parameter name="Platform" value="Safari" />-->		
