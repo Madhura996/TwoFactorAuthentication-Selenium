@@ -46,7 +46,8 @@ namespace TwoFactorAuthentication_Selenium
         private static string getTwoFactorCode()
         {
             TestContext.Out.WriteLine("Retrieved two-factor code");
-            var secretKey = Environment.GetEnvironmentVariable("AUTH_SECRET_KEY");
+            var secretKey = Environment.GetEnvironmentVariable("AUTH_SECRET_KEY") 
+                ?? throw new InvalidOperationException("Missing TOTP_SECRET environment variable."); ;
             var totp = new Totp(Base32Encoding.ToBytes(secretKey));
             var otp = totp.ComputeTotp();
             TestContext.Out.WriteLine(otp);
