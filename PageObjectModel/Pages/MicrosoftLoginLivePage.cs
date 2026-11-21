@@ -6,13 +6,15 @@ namespace TwoFactorAuthentication_Selenium.PageObjectModel.Pages
     {
         public readonly By Password;
         public readonly By Login;
+        public readonly By Title;
         public readonly By Code;
         public readonly By Submit;
 
-        public MicrosoftLoginLivePage(IWebDriver driver, string url) : base(driver, url)
+        public MicrosoftLoginLivePage(IWebDriver driver) : base(driver, string.Empty)
         {
             Password = By.CssSelector("#passwordEntry");
             Login = By.CssSelector("button[data-testid='primaryButton']");
+            Title = By.CssSelector("h1[data-testid='title']");
             Code = By.CssSelector("#floatingLabelInput5");
             Submit = By.CssSelector("button[data-testid='primaryButton']");
         }

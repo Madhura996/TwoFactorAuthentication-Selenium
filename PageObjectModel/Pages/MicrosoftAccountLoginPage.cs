@@ -2,15 +2,9 @@
 
 namespace TwoFactorAuthentication_Selenium.PageObjectModel.Pages
 {
-    public class MicrosoftAccountLoginPage : BasePage
+    public class MicrosoftAccountLoginPage(IWebDriver driver) : BasePage(driver, string.Empty)
     {
-        public readonly By Useremail;
-        public readonly By Next;
-
-        public MicrosoftAccountLoginPage(IWebDriver driver, string url) : base(driver, url)
-        {
-            Useremail = By.CssSelector("#i0116");
-            Next = By.CssSelector("#idSIButton9");
-        }
+        public readonly By Useremail = By.CssSelector("#i0116");
+        public readonly By Next = By.CssSelector("#idSIButton9");
     }
 }

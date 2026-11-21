@@ -6,7 +6,7 @@ namespace TwoFactorAuthentication_Selenium.PageObjectModel.Pages
     {
         public readonly By Account;
 
-        public AccountHomePage(IWebDriver driver, string url) : base(driver, url)
+        public AccountHomePage(IWebDriver driver) : base(driver, string.Empty)
         {
             Account = By.CssSelector("#home-breadcrumb-account");
         }
