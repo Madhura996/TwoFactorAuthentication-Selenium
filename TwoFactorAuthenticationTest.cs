@@ -1,4 +1,6 @@
-﻿namespace TwoFactorAuthentication_Selenium
+﻿using OtpNet;
+
+namespace TwoFactorAuthentication_Selenium
 {
     public class Tests
     {
@@ -12,5 +14,6 @@
         {
             Assert.Pass();
         }
+
     }
 }
