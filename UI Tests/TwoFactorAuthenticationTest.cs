@@ -17,12 +17,14 @@ namespace TwoFactorAuthentication_Selenium
 
             // Enter the user email on the login page
             MicrosoftAccountLoginPage msAccountLoginPage = new(driver);
+            msAccountLoginPage.WaitUntilLocatorVisible(msAccountLoginPage.Useremail);
             Assert.That(msAccountLoginPage.GetUrl(), Contains.Substring("https://login.microsoftonline.com/"));
             msAccountLoginPage.SetText(msAccountLoginPage.Useremail, Useremail);
             msAccountLoginPage.Click(msAccountLoginPage.Next);
 
             // Enter the user password on the login live page
             MicrosoftLoginLivePage msLoginLivePage = new(driver);
+            msLoginLivePage.WaitUntilLocatorVisible(msLoginLivePage.Password);
             Assert.That(msLoginLivePage.GetUrl(), Contains.Substring("https://login.live.com/"));
             msLoginLivePage.SetText(msLoginLivePage.Password, Password);
             msLoginLivePage.Click(msLoginLivePage.Login);
@@ -32,6 +34,8 @@ namespace TwoFactorAuthentication_Selenium
             var code = getTwoFactorCode();
             msLoginLivePage.SetText(msLoginLivePage.Code, code);
             msLoginLivePage.Click(msLoginLivePage.Submit);
+            msLoginLivePage.WaitUntilLocatorVisible(msLoginLivePage.StaySignedInNo);
+            msLoginLivePage.Click(msLoginLivePage.StaySignedInNo);
 
             // Verify that the user is logged in and redirected to the account home page
             AccountHomePage accountHomePage = new(driver);
@@ -41,7 +45,7 @@ namespace TwoFactorAuthentication_Selenium
 
         private static string getTwoFactorCode()
         {
-            TestContext.Out.WriteLine("Retrieving security code");
+            TestContext.Out.WriteLine("Retrieved two-factor code");
             var secretKey = Environment.GetEnvironmentVariable("AUTH_SECRET_KEY");
             var totp = new Totp(Base32Encoding.ToBytes(secretKey));
             var otp = totp.ComputeTotp();

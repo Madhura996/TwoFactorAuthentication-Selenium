@@ -9,6 +9,7 @@ namespace TwoFactorAuthentication_Selenium.PageObjectModel.Pages
         public readonly By Title;
         public readonly By Code;
         public readonly By Submit;
+        public readonly By StaySignedInNo;
 
         public MicrosoftLoginLivePage(IWebDriver driver) : base(driver, string.Empty)
         {
@@ -17,6 +18,7 @@ namespace TwoFactorAuthentication_Selenium.PageObjectModel.Pages
             Title = By.CssSelector("h1[data-testid='title']");
             Code = By.CssSelector("#floatingLabelInput5");
             Submit = By.CssSelector("button[data-testid='primaryButton']");
+            StaySignedInNo = By.CssSelector("button[data-testid='secondaryButton']");
         }
     }
    
